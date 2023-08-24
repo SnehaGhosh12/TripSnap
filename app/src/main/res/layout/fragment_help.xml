@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".HelpFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Help"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="20dp"
+                    android:background="@color/purple_700">
+
+                    <ImageView
+                        android:id="@+id/ivBus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_bus" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/ivBus"
+                        android:text="New bus booking help"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow_next"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="20dp"
+                    android:background="@color/purple_700">
+
+                    <ImageView
+                        android:id="@+id/ivSafety"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_safety" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/ivSafety"
+                        android:text="Safety + Features"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow_next"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="20dp"
+                    android:background="@color/purple_700">
+                    <ImageView
+                        android:id="@+id/ivTechnical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_technical_issue"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/ivTechnical"
+                        android:text="Technical Issues"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow_next"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="20dp"
+                    android:background="@color/purple_700">
+
+                    <ImageView
+                        android:id="@+id/ivOffers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_offer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/ivOffers"
+                        android:text="Offers"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow_next"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

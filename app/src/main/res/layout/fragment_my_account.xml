@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyAccountFragment"
+    android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Account"
+                    android:textColor="@color/white"
+                    android:textSize="21dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="71dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_my_account" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="Sneha"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="6290542435"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="More"
+                    android:backgroundTint="@color/purple_500"
+                    app:cornerRadius="5dp"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvWallet"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="26dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topLayout">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Wallet"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCards"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="26dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toStartOf="@id/cvOffers"
+                app:layout_constraintStart_toEndOf="@id/cvWallet"
+                app:layout_constraintTop_toBottomOf="@id/topLayout">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Cards"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvOffers"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginRight="15dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topLayout">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Offers"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRewards"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvWallet">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="My Rewards"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRefer"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="10dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toStartOf="@id/cvPassengers"
+                app:layout_constraintStart_toEndOf="@id/cvRewards"
+                app:layout_constraintTop_toBottomOf="@id/cvWallet">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Refer Earn"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPassengers"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvWallet">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Co - Passengers"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCertificate"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                app:cardElevation="5dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvRewards">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="COWIN VAX Certificate"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSupport"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="10dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toStartOf="@id/cvAbout"
+                app:layout_constraintStart_toEndOf="@id/cvCertificate"
+                app:layout_constraintTop_toBottomOf="@id/cvRewards">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="Refer Earn"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAbout"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvRewards">
+
+                <TextView
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:drawableTop="@drawable/ic_wallet"
+                    android:gravity="center"
+                    android:padding="14dp"
+                    android:text="About Us"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+            <View
+                app:layout_constraintTop_toBottomOf="@id/cvAbout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
