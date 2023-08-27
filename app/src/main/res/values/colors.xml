@@ -10,5 +10,10 @@
     <color name="main">#D3F46D44</color>
     <color name="main2">#E64A19</color>
     <color name="main3">#C3775F</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+<!--    <color name="white">#FFFFFF</color>-->
+    <color name="signupColor">#066e8a</color>
 
 </resources>
