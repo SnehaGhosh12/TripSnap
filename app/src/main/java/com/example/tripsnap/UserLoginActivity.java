@@ -3,10 +3,13 @@ package com.example.tripsnap;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ public class UserLoginActivity extends AppCompatActivity {
     EditText userId, userPassword;
     String stUserId, stUserPassword, originalPassword;
     Long lnUserId;
+    Dialog dialog;
     TextView btnSignupAct;
     Button submit;
     private long pressedTime;
@@ -46,9 +50,16 @@ public class UserLoginActivity extends AppCompatActivity {
                     Toast.makeText(UserLoginActivity.this, "Please fill all data", Toast.LENGTH_SHORT).show();
                 } else {
 //                    Toast.makeText(UserLoginActivity.this, stUserId, Toast.LENGTH_SHORT).show()
+                    dialog = new Dialog(UserLoginActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.progressbar);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
                     getPassByApi();
-
                 }
+
+
+
             }
         });
         btnSignupAct.setOnClickListener(new View.OnClickListener() {
@@ -94,15 +105,20 @@ public class UserLoginActivity extends AppCompatActivity {
                    if (originalPassword != null) {
                        if (originalPassword.equals(stUserPassword)) {
                            Intent i = new Intent(UserLoginActivity.this, BusBookingActivity.class);
+                           i.putExtra("User Id",lnUserId);
+                           dialog.dismiss();
                            startActivity(i);
                            finish();
                        } else {
+                           dialog.dismiss();
                            Toast.makeText(UserLoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                        }
                    } else {
+                       dialog.dismiss();
                        Toast.makeText(UserLoginActivity.this, "Something Went wrong!.", Toast.LENGTH_SHORT).show();
                    }
                }else{
+                   dialog.dismiss();
                    Toast.makeText(UserLoginActivity.this, "User Id not exists. Please, Create an account.", Toast.LENGTH_SHORT).show();
                    Intent i = new Intent(UserLoginActivity.this, UserSignUpActivity.class);
                    startActivity(i);
@@ -112,6 +128,7 @@ public class UserLoginActivity extends AppCompatActivity {
 
            @Override
            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+               dialog.dismiss();
                Toast.makeText(UserLoginActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
            }
        });

@@ -16,7 +16,7 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
 
     public BusesAdapter(Context context, List<ItemBus> buses) {
         this.context = context;
-        this.itembuses = itembuses;
+        this.itembuses = buses;
     }
 
 
@@ -33,7 +33,7 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
         holder.source.setText(itembuses.get(position).getSource());
         holder.destination.setText(itembuses.get(position).getDestination());
         holder.time.setText(itembuses.get(position).getTime());
-        holder.fare.setText(itembuses.get(position).getFare());
+        holder.fare.setText("₹"+itembuses.get(position).getFare()+"/-");
     }
 
     @Override

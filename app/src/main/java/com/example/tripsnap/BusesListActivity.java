@@ -19,11 +19,27 @@ public class BusesListActivity extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.buslist_rv);
 
         List<ItemBus> itemBuses=new ArrayList<ItemBus>();
-        itemBuses.add(new ItemBus("1234","Kol","Del","12.40","8000"));
-        itemBuses.add(new ItemBus("2342","Kol","Mum","10.40","1200"));
-        itemBuses.add(new ItemBus("5642","Mumbai","Del","12.40","5900"));
-        itemBuses.add(new ItemBus("1289","Kol","Pune","12.40","3900"));
+        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
+        itemBuses.add(new ItemBus("WB 29 2342","Kolkata","Mumbai","10.40pm -> 2.00pm","1200"));
+        itemBuses.add(new ItemBus("WB 29 5642","Mumbai","Delhi","12.40pm -> 4.14 pm","5900"));
+        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
 
+        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
+        itemBuses.add(new ItemBus("WB 29 2342","Kolkata","Mumbai","10.40pm -> 2.00pm","1200"));
+        itemBuses.add(new ItemBus("WB 29 5642","Mumbai","Delhi","12.40pm -> 4.14 pm","5900"));
+        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
+        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
+        itemBuses.add(new ItemBus("WB 29 2342","Kolkata","Mumbai","10.40pm -> 2.00pm","1200"));
+        itemBuses.add(new ItemBus("WB 29 5642","Mumbai","Delhi","12.40pm -> 4.14 pm","5900"));
+        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
+        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
+        itemBuses.add(new ItemBus("WB 29 2342","Kolkata","Mumbai","10.40pm -> 2.00pm","1200"));
+        itemBuses.add(new ItemBus("WB 29 5642","Mumbai","Delhi","12.40pm -> 4.14 pm","5900"));
+        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
+        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
+        itemBuses.add(new ItemBus("WB 29 2342","Kolkata","Mumbai","10.40pm -> 2.00pm","1200"));
+        itemBuses.add(new ItemBus("WB 29 5642","Mumbai","Delhi","12.40pm -> 4.14 pm","5900"));
+        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new BusesAdapter(getApplicationContext(),itemBuses));
     }

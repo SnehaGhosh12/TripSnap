@@ -3,9 +3,11 @@ package com.example.tripsnap;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ public class UserSignUpActivity extends AppCompatActivity {
     private  EditText etPassword;
     String stMobileNo,stName,stEmail,stAge,stGender,stPassowrd;
     private Button btnSignUp;
+    Dialog dialog;
     private long pressedTime;
 
     User user;
@@ -47,6 +50,11 @@ public class UserSignUpActivity extends AppCompatActivity {
                 if(stMobileNo.isEmpty() || stEmail.isEmpty() || stPassowrd.isEmpty() || stName.isEmpty() || stAge.isEmpty() || stGender.isEmpty()){
                     Toast.makeText(UserSignUpActivity.this, "Please fill all data", Toast.LENGTH_SHORT).show();
                 }else{
+                    dialog = new Dialog(UserSignUpActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.progressbar);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
                     setUser();
                     registrationUser(user);
                 }
@@ -69,13 +77,15 @@ public class UserSignUpActivity extends AppCompatActivity {
                 User responseFromAPI = response.body();
                 Toast.makeText(UserSignUpActivity.this, "Registration Successsfull.", Toast.LENGTH_SHORT).show();
                 Intent i =new Intent(UserSignUpActivity.this,RegisterActivity.class);
+                dialog.dismiss();
                 startActivity(i);
                 finish();
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                dialog.dismiss();
+                Toast.makeText(UserSignUpActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

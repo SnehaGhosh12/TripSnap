@@ -3,79 +3,100 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="13dp"
     app:cardElevation="8dp"
-    android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/white">
-
+    android:layout_margin="9dp"
+    android:outlineSpotShadowColor="@color/main"
+    android:outlineAmbientShadowColor="@color/main3"
+    android:padding="5dp"
+    android:background="@drawable/cardview_bg"
+    app:cardBackgroundColor="#F6F4F4">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        android:layout_margin="4dp">
+        android:padding="5dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/bus_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="bus_id"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:gravity="center_horizontal" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/source"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Source"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:gravity="center_horizontal" />
-                <TextView
-                    android:id="@+id/destination"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Destination"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:gravity="center_horizontal" />
-            </LinearLayout>
-        </LinearLayout>
 
-        <TextView
-        android:id="@+id/time"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="time"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="21sp"
-        android:gravity="center_horizontal" />
-        <TextView
-            android:id="@+id/fare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="fare"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="21sp"
-            android:gravity="center_horizontal" />
+        android:orientation="vertical"
+        >
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          <TextView
+              android:id="@+id/busId"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="WB 29 5464"
+              android:textSize="12sp"
+              android:textColor="@color/black"
+              android:background="@drawable/id_ng"
+              android:padding="9dp"
+              />
+          <TextView
+              android:id="@+id/busTime"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="2.00 pm -> 4.14 pm"
+              android:layout_marginLeft="3dp"
+              android:textSize="12sp"
+              android:textColor="@color/black"
+              android:padding="9dp"
+              />
+
+      </LinearLayout>
+
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:padding="10dp"
+           android:orientation="horizontal">
+
+           <TextView
+               android:id="@+id/source"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Kolkata"
+               android:textSize="23sp"
+               android:textColor="@color/black"
+              />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text=" -> "
+               android:textSize="23sp"
+               android:textColor="@color/black"
+               />
+           <TextView
+               android:id="@+id/destination"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Midnapore"
+               android:textSize="23sp"
+               android:textColor="@color/black"
+               />
+       </LinearLayout>
+
+
 
     </LinearLayout>
+        <TextView
+            android:id="@+id/busFare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="₹200/-"
+            android:textSize="25sp"
+            android:textColor="@color/main3"
+            />
+
+
+    </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
