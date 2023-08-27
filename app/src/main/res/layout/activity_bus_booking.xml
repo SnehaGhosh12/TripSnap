@@ -16,7 +16,7 @@ tools:context=".BusBookingActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@color/main"
         android:padding="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -105,14 +105,17 @@ tools:context=".BusBookingActivity">
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/etEnterDestination" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/purple_700"
+                    android:backgroundTint="@color/main"
                     android:padding="10dp"
                     android:text="SEARCH"
                     android:textSize="18sp"
+                    app:strokeColor="@color/main"
+                    app:cornerRadius="4dp"
+                    app:strokeWidth="2dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/etDate" />
             </androidx.constraintlayout.widget.ConstraintLayout>

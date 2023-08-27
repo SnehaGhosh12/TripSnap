@@ -27,21 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvLoginOrSignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="Login / SignUp"
-        android:textColor="@color/main3"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLoginSignup" />
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignupAct"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -50,6 +36,9 @@
         android:text="Sign up"
         android:textSize="17sp"
         android:textStyle="bold"
+        app:strokeColor="@color/main"
+        app:cornerRadius="4dp"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLoginAct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -59,18 +48,18 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="30dp"
-        android:textColor="@color/main"
-        app:strokeColor="@color/main"
-        app:strokeWidth="2dp"
-        app:cornerRadius="4dp"
+        android:layout_marginBottom="112dp"
         android:backgroundTint="@color/white"
         android:text="Log in"
+        android:textColor="@color/main"
         android:textSize="17sp"
         android:textStyle="bold"
+        app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/main"
+        app:strokeWidth="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
