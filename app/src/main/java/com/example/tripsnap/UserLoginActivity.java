@@ -1,13 +1,12 @@
 package com.example.tripsnap;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tripsnap.Models.PasswordModel;
-import com.example.tripsnap.Models.User;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 
@@ -41,6 +38,10 @@ public class UserLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
+        SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isUserLogIn", true);
+        editor.commit();
         init();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

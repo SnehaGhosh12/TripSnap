@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -14,7 +17,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
+import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BusBookingActivity extends AppCompatActivity {
 
@@ -22,7 +37,9 @@ public class BusBookingActivity extends AppCompatActivity {
     private ImageView calender;
     final Calendar c = Calendar.getInstance();
     private EditText dateEdit,etEnterSource,etEnterDestination;
-    private long pressedTime,lnUserId;
+    private long pressedTime;
+    public static  Long lnUserId;
+    private Dialog dialog;
     private String stEnterSource,stEnterDestination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +110,45 @@ public class BusBookingActivity extends AppCompatActivity {
                 }else if( dateEdit.getText().toString().isEmpty()){
                     Toast.makeText(BusBookingActivity.this, "Please enter date", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent i = new Intent(BusBookingActivity.this, BusesListActivity.class);
-                    startActivity(i);
+                    dialog = new Dialog(BusBookingActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.progressbar);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
+                    getBusByApi();
+
                 }
             }
         });
+    }
+
+    public void getBusByApi(){
+        RetrofitAPI retrofitAPI = BaseUrl.retrofit();
+        String busId= stEnterSource.trim()+stEnterDestination.trim();
+        Call<ArrayList<Bus>> call = retrofitAPI.getBus(busId);
+
+        call.enqueue(new Callback<ArrayList<Bus>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Bus>> call, Response<ArrayList<Bus>> response) {
+                ArrayList<Bus> list=response.body();
+//                Toast.makeText(BusBookingActivity.this, ""+list.size(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(BusBookingActivity.this, BusesListActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelableArrayList("arraylist",list);
+                i.putExtras(bundle);
+                dialog.dismiss();
+                startActivity(i);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Bus>> call, Throwable t) {
+                Toast.makeText(BusBookingActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        });
+
     }
     private void init(){
         lnUserId=getIntent().getLongExtra("User Id",0);
@@ -108,8 +159,8 @@ public class BusBookingActivity extends AppCompatActivity {
         etEnterDestination=findViewById(R.id.etEnterDestination);
     }
     private void stringConverter(){
-        stEnterSource=etEnterSource.getText().toString();
-        stEnterDestination=etEnterDestination.getText().toString();
+        stEnterSource=etEnterSource.getText().toString().toLowerCase();
+        stEnterDestination=etEnterDestination.getText().toString().toLowerCase();
     }
     @Override
     public void onBackPressed() {

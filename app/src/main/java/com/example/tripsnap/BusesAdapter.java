@@ -7,14 +7,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tripsnap.Models.Bus;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
 
     Context context;
-    List<ItemBus> itembuses;
+    ArrayList<Bus> itembuses;
 
-    public BusesAdapter(Context context, List<ItemBus> buses) {
+    public BusesAdapter(Context context, ArrayList<Bus> buses) {
         this.context = context;
         this.itembuses = buses;
     }
@@ -29,10 +32,11 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
     @Override
     public void onBindViewHolder(@NonNull BusHolder holder, int position) {
 
-        holder.bus_id.setText(itembuses.get(position).getBus_id());
+        holder.bus_id.setText(itembuses.get(position).getBusId());
         holder.source.setText(itembuses.get(position).getSource());
         holder.destination.setText(itembuses.get(position).getDestination());
-        holder.time.setText(itembuses.get(position).getTime());
+        holder.arvtime.setText(itembuses.get(position).getArrivalTime());
+        holder.depttime.setText(itembuses.get(position).getDepartTime());
         holder.fare.setText("₹"+itembuses.get(position).getFare()+"/-");
     }
 
