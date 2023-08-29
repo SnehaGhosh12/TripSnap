@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seats extends AppCompatActivity implements View.OnClickListener {
+public class SeatsActivity extends AppCompatActivity implements View.OnClickListener {
 
     ViewGroup layout;
     LinearLayout color_guide;

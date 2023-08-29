@@ -3,6 +3,7 @@ package com.example.tripsnap;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tripsnap.Models.Bus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
 
@@ -40,10 +40,15 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
         holder.depttime.setText(itembuses.get(position).getDepartTime());
         holder.fare.setText("₹"+itembuses.get(position).getFare()+"/-");
 
-        holder.itemView.setOnClickListener((view -> {
-            Intent i= new Intent(view.getContext(),Seats.class);
-            view.getContext().startActivity(i);
-        }));
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(context, SeatsActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
+
     }
 
 
