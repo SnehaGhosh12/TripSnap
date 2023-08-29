@@ -6,6 +6,7 @@ android {
     namespace 'com.example.tripsnap'
     compileSdk 33
 
+
     defaultConfig {
         applicationId "com.example.tripsnap"
         minSdk 16
@@ -45,7 +46,12 @@ dependencies {
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
+
+//    implementation 'com.github.JahidHasanCO:SeatBookView:1.0.4'
+
+
 }
