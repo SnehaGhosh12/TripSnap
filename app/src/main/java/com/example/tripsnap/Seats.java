@@ -18,6 +18,7 @@ import java.util.List;
 public class Seats extends AppCompatActivity implements View.OnClickListener {
 
     ViewGroup layout;
+    LinearLayout color_guide;
 //    String seats = "_UUUUUUAAAAARRRR_/"
 //            + "_________________/"
 //            + "UU__AAAARRRRR__RR/"
@@ -35,14 +36,14 @@ public class Seats extends AppCompatActivity implements View.OnClickListener {
 //            + "AA_AAAAAAUUUUU_AA/"
 //            + "_________________/";
 
-    String seats = "AA_AAA/"
+    StringBuilder seats = new StringBuilder("AA_AAA/"
             + "AA_AAA/"
             + "___AAA/"
             + "AA_AAA/"
             + "AA_AAA/"
             + "AA_AAA/"
             + "AA_AAA/"
-            + "AAAAAA/";
+            + "AAAAAA/");
 
 
 
@@ -63,8 +64,10 @@ public class Seats extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_seats);
 
         layout = findViewById(R.id.layoutSeat);
+        color_guide=findViewById(R.id.color_guide);
+        color_guide.setVisibility(View.GONE);
 
-        seats = "/" + seats;
+        seats = new StringBuilder("/" + seats);
 
         LinearLayout layoutSeat = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
