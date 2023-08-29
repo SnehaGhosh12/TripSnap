@@ -24,7 +24,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User Id"
-                    android:padding="15dp"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="20dp"
                     android:textSize="25sp"
                     android:layout_weight="1"/>
                 <LinearLayout
@@ -88,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="20dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rectangle_border"
                 >
 

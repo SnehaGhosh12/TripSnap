@@ -1,6 +1,7 @@
 package com.example.tripsnap;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -38,7 +39,13 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
         holder.arvtime.setText(itembuses.get(position).getArrivalTime());
         holder.depttime.setText(itembuses.get(position).getDepartTime());
         holder.fare.setText("₹"+itembuses.get(position).getFare()+"/-");
+
+        holder.itemView.setOnClickListener((view -> {
+            Intent i= new Intent(view.getContext(),Seats.class);
+            view.getContext().startActivity(i);
+        }));
     }
+
 
     @Override
     public int getItemCount() {
