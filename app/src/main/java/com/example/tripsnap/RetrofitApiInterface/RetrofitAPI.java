@@ -1,10 +1,10 @@
 package com.example.tripsnap.RetrofitApiInterface;
 
 import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.Models.Reservation;
 import com.example.tripsnap.Models.User;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -24,6 +24,12 @@ public interface RetrofitAPI {
 
     @GET("bus/{id}")
     Call<ArrayList<Bus>> getBus(@Path("id")String id);
+
+    @POST("seat/book")
+    Call<Reservation> newReservation(@Body Reservation reservation);
+
+    @GET("seat/check/{id}/{no}")
+    Call<ArrayList<Reservation>> checkBookedOrNot(@Path("id")String id,@Path("no")int no);
 
 
 }

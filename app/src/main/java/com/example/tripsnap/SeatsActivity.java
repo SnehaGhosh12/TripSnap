@@ -1,7 +1,9 @@
 package com.example.tripsnap;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -12,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
     ViewGroup layout;
     LinearLayout color_guide;
+    TextView user_id;
 //    String seats = "_UUUUUUAAAAARRRR_/"
 //            + "_________________/"
 //            + "UU__AAAARRRRR__RR/"
@@ -66,6 +71,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         layout = findViewById(R.id.layoutSeat);
         color_guide=findViewById(R.id.color_guide);
         color_guide.setVisibility(View.GONE);
+        user_id=findViewById(R.id.user_id);
+
 
         seats = new StringBuilder("/" + seats);
 
@@ -150,18 +157,45 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if ((int) view.getTag() == STATUS_AVAILABLE) {
-            if (selectedIds.contains(view.getId() + ",")) {
-                selectedIds = selectedIds.replace(+view.getId() + ",", "");
-                view.setBackgroundResource(R.drawable.ic_seats_book);
-            } else {
-                selectedIds = selectedIds + view.getId() + ",";
-                view.setBackgroundResource(R.drawable.ic_seats_selected);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ((int) view.getTag() == STATUS_AVAILABLE){
+                    view.setBackgroundResource(R.drawable.ic_seats_selected);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SeatsActivity.this);
+                    builder.setMessage("Do you want to book seat "+view.getId()+"?");
+                    builder.setTitle("Alert !");
+                    builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        finish();
+                    });
+
+                    builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        view.setBackgroundResource(R.drawable.ic_seats_book);
+                        dialog.cancel();
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                } else if ((int) view.getTag() == STATUS_BOOKED) {
+                    Toast.makeText(SeatsActivity.this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
+                } else if ((int) view.getTag() == STATUS_RESERVED) {
+                    Toast.makeText(SeatsActivity.this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
+                }
             }
-        } else if ((int) view.getTag() == STATUS_BOOKED) {
-            Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
-        } else if ((int) view.getTag() == STATUS_RESERVED) {
-            Toast.makeText(this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
-        }
+
+        });
+//        if ((int) view.getTag() == STATUS_AVAILABLE) {
+//            if (selectedIds.contains(view.getId() + ",")) {
+//                selectedIds = selectedIds.replace(+view.getId() + ",", "");
+//                view.setBackgroundResource(R.drawable.ic_seats_book);
+//            } else {
+//                selectedIds = selectedIds + view.getId() + ",";
+//                view.setBackgroundResource(R.drawable.ic_seats_selected);
+//            }
+//        } else if ((int) view.getTag() == STATUS_BOOKED) {
+//            Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
+//        } else if ((int) view.getTag() == STATUS_RESERVED) {
+//            Toast.makeText(this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
+//        }
     }
 }
