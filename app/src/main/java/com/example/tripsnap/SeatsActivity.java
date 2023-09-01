@@ -1,10 +1,13 @@
 package com.example.tripsnap;
 
+import static com.example.tripsnap.BusBookingActivity.lnUserId;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -14,10 +17,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.Models.Reservation;
+import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
+import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
+
 import org.w3c.dom.Text;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SeatsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,9 +61,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             + "AA_AAA/"
             + "___AAA/"
             + "AA_AAA/"
+            + "AA_AAR/"
             + "AA_AAA/"
-            + "AA_AAA/"
-            + "AA_AAA/"
+            + "AA_RAA/"
             + "AAAAAA/");
 
 
@@ -62,11 +78,14 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     int STATUS_BOOKED = 2;
     int STATUS_RESERVED = 3;
     String selectedIds = "";
+    LocalDateTime time;
+    DateTimeFormatter dateTimeFormatter,timeFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seats);
+
 
         layout = findViewById(R.id.layoutSeat);
         color_guide=findViewById(R.id.color_guide);
@@ -118,7 +137,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 view.setPadding(0, 0, 0, 2 * seatGaping);
                 view.setId(count);
                 view.setGravity(Gravity.CENTER);
-                view.setBackgroundResource(R.drawable.ic_seats_book);
+                view.setBackgroundResource(R.drawable.ic_seats_selected);
                 view.setText(count + "");
                 view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
                 view.setTextColor(Color.BLACK);
@@ -161,16 +180,52 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 if ((int) view.getTag() == STATUS_AVAILABLE){
-                    view.setBackgroundResource(R.drawable.ic_seats_selected);
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(SeatsActivity.this);
                     builder.setMessage("Do you want to book seat "+view.getId()+"?");
                     builder.setTitle("Alert !");
                     builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
-                        finish();
+                        view.setBackgroundResource(R.drawable.ic_seats_book);
+
+
+                        Reservation reservation=new Reservation();
+                        reservation.setBookedSeat(view.getId());
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            time = LocalDateTime.now();
+                            dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                            timeFormatter =DateTimeFormatter.ofPattern("HH:mm:ss");
+                            dateTimeFormatter.format(time);
+                            reservation.setDate(dateTimeFormatter.toString());
+                            reservation.setTime(timeFormatter.format(time).toString());
+
+                        }
+                        reservation.setStatus("Booked");
+                        Long userId=lnUserId;
+                        reservation.setUserId(userId);
+                        reservation.setBusId("");
+                        reservation.setJourneyDate("");
+                        reservation.setFare(0);
+                        reservation.setSource("");
+                        reservation.setDestination("");
+                        RetrofitAPI retrofitAPI = BaseUrl.retrofit();
+                        Call<Reservation> call = retrofitAPI.newReservation(reservation);
+                        call.enqueue(new Callback<Reservation>() {
+                            @Override
+                            public void onResponse(Call<Reservation> call, Response<Reservation> response) {
+                                Toast.makeText(SeatsActivity.this, "Successfully booked", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Reservation> call, Throwable t) {
+                                Toast.makeText(SeatsActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
                     });
 
                     builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
-                        view.setBackgroundResource(R.drawable.ic_seats_book);
+                        view.setBackgroundResource(R.drawable.ic_seats_selected);
                         dialog.cancel();
                     });
 

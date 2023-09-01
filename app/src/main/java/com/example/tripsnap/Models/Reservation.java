@@ -7,20 +7,20 @@ public class Reservation {
 
     private Integer reservationID;
     private String status;
-    private LocalDate date;
-    private LocalTime time;
+    private String date;
+    private String time;
     private Long userId;
     private String busId;
     private String source;
     private String destination;
-    private LocalDate journeyDate;
+    private String journeyDate;
     private Integer bookedSeat;
     private Integer fare;
 
     public Reservation() {
     }
 
-    public Reservation(Integer reservationID, String status, LocalDate date, LocalTime time, Long userId, String busId, String source, String destination, LocalDate journeyDate, Integer bookedSeat, Integer fare) {
+    public Reservation(Integer reservationID, String status, String date, String time, Long userId, String busId, String source, String destination, String journeyDate, Integer bookedSeat, Integer fare) {
         this.reservationID = reservationID;
         this.status = status;
         this.date = date;
@@ -34,7 +34,7 @@ public class Reservation {
         this.fare = fare;
     }
 
-    public Reservation(String source, String destination, LocalDate journeyDate, Integer bookedSeat, Integer fare,Integer reservationID, String status, LocalDate date, LocalTime time) {
+    public Reservation(String source, String destination, String journeyDate, Integer bookedSeat, Integer fare,Integer reservationID, String status, String date, String time) {
         this.source = source;
         this.destination = destination;
         this.journeyDate = journeyDate;
@@ -62,19 +62,19 @@ public class Reservation {
         this.status = status;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -110,11 +110,11 @@ public class Reservation {
         this.destination = destination;
     }
 
-    public LocalDate getJourneyDate() {
+    public String getJourneyDate() {
         return journeyDate;
     }
 
-    public void setJourneyDate(LocalDate journeyDate) {
+    public void setJourneyDate(String journeyDate) {
         this.journeyDate = journeyDate;
     }
 
