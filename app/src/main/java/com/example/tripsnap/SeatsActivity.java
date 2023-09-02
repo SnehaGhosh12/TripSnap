@@ -190,7 +190,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     builder.setTitle("Alert !");
                     builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
                         view.setBackgroundResource(R.drawable.ic_seats_book);
-
+                        seats.replace(view.getId(), view.getId(), "R");
+                        view.setTag(STATUS_RESERVED);
 
 
 
