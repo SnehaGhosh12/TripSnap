@@ -1,10 +1,13 @@
 package com.example.tripsnap;
 
+import static com.example.tripsnap.BusBookingActivity.lnUserId;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.tripsnap.Models.Bus;
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     ViewGroup layout;
     LinearLayout color_guide;
     TextView user_id;
+
 //    String seats = "_UUUUUUAAAAARRRR_/"
 //            + "_________________/"
 //            + "UU__AAAARRRRR__RR/"
@@ -91,6 +93,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         color_guide=findViewById(R.id.color_guide);
         color_guide.setVisibility(View.GONE);
         user_id=findViewById(R.id.user_id);
+        user_id.setText(BusBookingActivity.lnUserId.toString());
+
 
 
         seats = new StringBuilder("/" + seats);
@@ -188,6 +192,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                         view.setBackgroundResource(R.drawable.ic_seats_book);
 
 
+
+
                         Reservation reservation=new Reservation();
                         reservation.setBookedSeat(view.getId());
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -199,14 +205,20 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                             reservation.setTime(timeFormatter.format(time).toString());
 
                         }
+
+                        Bundle i=getIntent().getExtras();
                         reservation.setStatus("Booked");
                         Long userId=lnUserId;
                         reservation.setUserId(userId);
-                        reservation.setBusId("");
+                        reservation.setBusId(i.getString("bus_id"));
                         reservation.setJourneyDate("");
-                        reservation.setFare(0);
-                        reservation.setSource("");
-                        reservation.setDestination("");
+                        reservation.setFare(Integer.parseInt(i.getString("fare")));
+                        reservation.setSource(i.getString("source"));
+                        reservation.setDestination(i.getString("destination"));
+
+
+//                        Toast.makeText(SeatsActivity.this,""+i.getString("bus_id")+" "+Integer.parseInt(i.getString("fare"))+" "+i.getString("source")+" "+i.getString("destination"),Toast.LENGTH_SHORT).show();
+
                         RetrofitAPI retrofitAPI = BaseUrl.retrofit();
                         Call<Reservation> call = retrofitAPI.newReservation(reservation);
                         call.enqueue(new Callback<Reservation>() {

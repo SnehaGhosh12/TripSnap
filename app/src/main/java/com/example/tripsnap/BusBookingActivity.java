@@ -58,7 +58,6 @@ public class BusBookingActivity extends AppCompatActivity {
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         BusBookingActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
@@ -106,7 +105,7 @@ public class BusBookingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 stringConverter();
                 if(stEnterSource.isEmpty()){
-                    Toast.makeText(BusBookingActivity.this, "Please enter source", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BusBookingActivity.this, "Please enter source"+lnUserId.toString(), Toast.LENGTH_SHORT).show();
                 }else if( stEnterDestination.isEmpty()){
                     Toast.makeText(BusBookingActivity.this, "Please enter destination", Toast.LENGTH_SHORT).show();
                 }else if( dateEdit.getText().toString().isEmpty()){
