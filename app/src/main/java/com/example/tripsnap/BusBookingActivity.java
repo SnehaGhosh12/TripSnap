@@ -133,10 +133,13 @@ public class BusBookingActivity extends AppCompatActivity {
             public void onResponse(Call<ArrayList<Bus>> call, Response<ArrayList<Bus>> response) {
                 ArrayList<Bus> list=response.body();
 //                Toast.makeText(BusBookingActivity.this, ""+list.size(), Toast.LENGTH_SHORT).show();
+
+
                 Intent i = new Intent(BusBookingActivity.this, BusesListActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putParcelableArrayList("arraylist",list);
                 i.putExtras(bundle);
+                i.putExtra("date",dateEdit.getText().toString());
                 dialog.dismiss();
                 startActivity(i);
             }
