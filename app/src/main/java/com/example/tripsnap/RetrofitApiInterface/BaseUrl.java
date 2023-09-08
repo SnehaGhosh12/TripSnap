@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BaseUrl {
-    public static String baseurl= "https://bushop-production.up.railway.app/api/";
+    public static String baseurl= "https://bushop.onrender.com/api/";
 
     public static RetrofitAPI retrofit(){
         Retrofit retrofit = new Retrofit.Builder()
