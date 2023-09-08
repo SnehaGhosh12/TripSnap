@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,10 +25,12 @@ import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,6 +43,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     ViewGroup layout;
     LinearLayout color_guide;
     TextView user_id;
+
+
+
 //    String seats = "_UUUUUUAAAAARRRR_/"
 //            + "_________________/"
 //            + "UU__AAAARRRRR__RR/"
@@ -78,8 +84,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     int STATUS_BOOKED = 2;
     int STATUS_RESERVED = 3;
     String selectedIds = "";
-    LocalDateTime time;
-    DateTimeFormatter dateTimeFormatter,timeFormatter;
+//    LocalDateTime time;
+//    DateTimeFormatter dateTimeFormatter,timeFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +94,10 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
 
         layout = findViewById(R.id.layoutSeat);
-        color_guide=findViewById(R.id.color_guide);
+        color_guide = findViewById(R.id.color_guide);
         color_guide.setVisibility(View.GONE);
-        user_id=findViewById(R.id.user_id);
+        user_id = findViewById(R.id.user_id);
+        user_id.setText(BusBookingActivity.lnUserId.toString());
 
 
         seats = new StringBuilder("/" + seats);
@@ -145,6 +152,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 layout.addView(view);
                 seatViewList.add(view);
                 view.setOnClickListener(this);
+
             } else if (seats.charAt(index) == 'R') {
                 count++;
                 TextView view = new TextView(this);
@@ -174,6 +182,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+
+
     @Override
     public void onClick(View view) {
         view.setOnClickListener(new View.OnClickListener() {
@@ -186,27 +196,46 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     builder.setTitle("Alert !");
                     builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
                         view.setBackgroundResource(R.drawable.ic_seats_book);
+                        seats.replace(view.getId(), view.getId(), "R");
+                        view.setTag(STATUS_RESERVED);
 
+
+
+                        String currDate= new SimpleDateFormat("dd-MM-yyyy",Locale.getDefault()).format(new Date());
+
+                        String currTime= new SimpleDateFormat("HH:mm:ss",Locale.getDefault()).format(new Date());
 
                         Reservation reservation=new Reservation();
                         reservation.setBookedSeat(view.getId());
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            time = LocalDateTime.now();
-                            dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                            timeFormatter =DateTimeFormatter.ofPattern("HH:mm:ss");
-                            dateTimeFormatter.format(time);
-                            reservation.setDate(dateTimeFormatter.toString());
-                            reservation.setTime(timeFormatter.format(time).toString());
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                            time = LocalDateTime.now();
+//                            dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//                            timeFormatter =DateTimeFormatter.ofPattern("HH:mm:ss");
+//                            dateTimeFormatter.format(time);
+//                            reservation.setDate(dateTimeFormatter.toString());
+//                            reservation.setTime(timeFormatter.format(time).toString());
+//                            Toast.makeText(SeatsActivity.this," "+dateTimeFormatter.toString()+" "+timeFormatter.format(time).toString(),Toast.LENGTH_SHORT).show();
+//
+//                        }
+                        reservation.setDate(currDate);
+                        reservation.setTime(currTime);
 
-                        }
+                        Bundle i=getIntent().getExtras();
+
                         reservation.setStatus("Booked");
                         Long userId=lnUserId;
                         reservation.setUserId(userId);
-                        reservation.setBusId("");
-                        reservation.setJourneyDate("");
-                        reservation.setFare(0);
-                        reservation.setSource("");
-                        reservation.setDestination("");
+                        reservation.setBusId(i.getString("bus_id"));
+                        reservation.setJourneyDate(BusesListActivity.date);
+                        reservation.setFare(Integer.parseInt(i.getString("fare")));
+                        reservation.setSource(i.getString("source"));
+                        reservation.setDestination(i.getString("destination"));
+
+
+//                        Toast.makeText(SeatsActivity.this,""+i.getString("bus_id")+" "+Integer.parseInt(i.getString("fare"))+" "+i.getString("source")+" "+i.getString("destination"),Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SeatsActivity.this,""+BusesListActivity.date,Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SeatsActivity.this,""+currDate+" "+currTime,Toast.LENGTH_SHORT).show();
+
                         RetrofitAPI retrofitAPI = BaseUrl.retrofit();
                         Call<Reservation> call = retrofitAPI.newReservation(reservation);
                         call.enqueue(new Callback<Reservation>() {

@@ -33,17 +33,23 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
     @Override
     public void onBindViewHolder(@NonNull BusHolder holder, int position) {
 
-        holder.bus_id.setText(itembuses.get(position).getBusId());
-        holder.source.setText(itembuses.get(position).getSource());
-        holder.destination.setText(itembuses.get(position).getDestination());
-        holder.arvtime.setText(itembuses.get(position).getArrivalTime());
-        holder.depttime.setText(itembuses.get(position).getDepartTime());
-        holder.fare.setText("₹"+itembuses.get(position).getFare()+"/-");
+        Bus item = itembuses.get(position);
+        holder.bus_id.setText(item.getBusId());
+        holder.source.setText(item.getSource());
+        holder.destination.setText(item.getDestination());
+        holder.arvtime.setText(item.getArrivalTime());
+        holder.depttime.setText(item.getDepartTime());
+        holder.fare.setText("₹"+item.getFare()+"/-");
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(context, SeatsActivity.class);
+                i.putExtra("bus_id",itembuses.get(position).getBusId());
+                i.putExtra("source",itembuses.get(position).getSource());
+                i.putExtra("destination",itembuses.get(position).getDestination());
+                i.putExtra("fare",itembuses.get(position).getFare());
+                i.putExtra("date",itembuses.get(position).getDepartTime());
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }

@@ -1,10 +1,14 @@
 package com.example.tripsnap;
 
+import static com.example.tripsnap.BusBookingActivity.lnUserId;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.tripsnap.Models.Bus;
 
@@ -13,7 +17,7 @@ import java.util.List;
 
 public class BusesListActivity extends AppCompatActivity {
 
-
+    public static String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,9 @@ public class BusesListActivity extends AppCompatActivity {
 //        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
 
         ArrayList<Bus> arrayList=getIntent().getParcelableArrayListExtra("arraylist");
+        Bundle i=getIntent().getExtras();
+        date=getIntent().getStringExtra("date");
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new BusesAdapter(getApplicationContext(),arrayList));
     }
