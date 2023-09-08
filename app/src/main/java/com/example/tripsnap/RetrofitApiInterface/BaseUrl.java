@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BaseUrl {
     public static String baseurl= "https://bushop.onrender.com/api/";
 
-    static Gson gson = new GsonBuilder()
+    public static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
 
