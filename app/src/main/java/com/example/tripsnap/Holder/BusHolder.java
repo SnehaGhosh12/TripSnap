@@ -1,4 +1,4 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Holder;
 
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import com.example.tripsnap.R;
 
 public class BusHolder extends ViewHolder {
     public TextView bus_id,source,destination,depttime,arvtime,fare;

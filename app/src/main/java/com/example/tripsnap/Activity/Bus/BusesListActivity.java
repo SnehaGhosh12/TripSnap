@@ -1,19 +1,16 @@
-package com.example.tripsnap;
-
-import static com.example.tripsnap.BusBookingActivity.lnUserId;
+package com.example.tripsnap.Activity.Bus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.example.tripsnap.Adapter.BusesAdapter;
 import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BusesListActivity extends AppCompatActivity {
 

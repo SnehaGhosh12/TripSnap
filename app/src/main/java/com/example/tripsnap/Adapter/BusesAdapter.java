@@ -1,5 +1,6 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tripsnap.Activity.Bus.SeatsActivity;
+import com.example.tripsnap.Holder.BusHolder;
 import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.R;
 
 import java.util.ArrayList;
 
@@ -31,7 +35,8 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BusHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BusHolder holder,
+                                 @SuppressLint("RecyclerView") int position) {
 
         Bus item = itembuses.get(position);
         holder.bus_id.setText(item.getBusId());

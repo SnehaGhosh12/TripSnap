@@ -1,4 +1,4 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Holder;
 
 public class ItemBus {
 

@@ -1,31 +1,26 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Activity.Bus;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.R;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;

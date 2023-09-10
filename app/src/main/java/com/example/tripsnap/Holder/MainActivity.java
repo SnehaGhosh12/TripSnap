@@ -1,8 +1,10 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Holder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.tripsnap.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Activity.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripsnap.Activity.Bus.BusBookingActivity;
+import com.example.tripsnap.R;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 
@@ -66,7 +68,7 @@ public class UserLoginActivity extends AppCompatActivity {
         btnSignupAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(UserLoginActivity.this,UserSignUpActivity.class);
+                Intent i=new Intent(UserLoginActivity.this, UserSignUpActivity.class);
                 startActivity(i);
                 finish();
             }

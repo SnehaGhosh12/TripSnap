@@ -1,14 +1,12 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Activity.Bus;
 
-import static com.example.tripsnap.BusBookingActivity.lnUserId;
+import static com.example.tripsnap.Activity.Bus.BusBookingActivity.lnUserId;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,18 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tripsnap.Models.Bus;
 import com.example.tripsnap.Models.Reservation;
+import com.example.tripsnap.R;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;

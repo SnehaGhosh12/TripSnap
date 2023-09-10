@@ -1,4 +1,4 @@
-package com.example.tripsnap;
+package com.example.tripsnap.Activity.Authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tripsnap.Models.User;
+import com.example.tripsnap.R;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 
@@ -76,7 +77,7 @@ public class UserSignUpActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 User responseFromAPI = response.body();
                 Toast.makeText(UserSignUpActivity.this, "Registration Successsfull.", Toast.LENGTH_SHORT).show();
-                Intent i =new Intent(UserSignUpActivity.this,RegisterActivity.class);
+                Intent i =new Intent(UserSignUpActivity.this, RegisterActivity.class);
                 dialog.dismiss();
                 startActivity(i);
                 finish();

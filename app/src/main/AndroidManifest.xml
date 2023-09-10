@@ -15,10 +15,10 @@
         android:theme="@style/Theme.TripSnap"
         tools:targetApi="31">
         <activity
-            android:name=".SeatsActivity"
+            android:name=".Activity.Bus.SeatsActivity"
             android:exported="false"/>
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activity.Splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,27 +27,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BusesListActivity"
+            android:name=".Activity.Bus.BusesListActivity"
             android:exported="false" />
         <activity
-            android:name=".BusBookingActivity"
+            android:name=".Activity.Bus.BusBookingActivity"
             android:exported="false" />
         <activity
-            android:name=".UserSignUpActivity"
+            android:name=".Activity.Authentication.UserSignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".UserLoginActivity"
+            android:name=".Activity.Authentication.UserLoginActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activity.Authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Dummy.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Holder.MainActivity"
             android:exported="false" />
     </application>
 
