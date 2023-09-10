@@ -45,6 +45,19 @@
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/NoBusFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/action_bar"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="Sorry!\nNo Bus Found."
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buslist_rv"
 

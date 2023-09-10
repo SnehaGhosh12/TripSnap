@@ -35,4 +35,12 @@ public interface RetrofitAPI {
     @GET("seat/bus/{busId}")
     Call<ArrayList<Reservation>> findAllSeatByBusId(@Path("busId")String busId);
 
+    @GET("bus/{srcdst}/{date}")
+    Call<ArrayList<Bus>> findAllBusBySrcdstAndDate(@Path("srcdst")String srcdst,@Path("date")String date);
+    @GET("seat/{busId}/{date}")
+    Call<ArrayList<Reservation>> findBusByBusIdandDate(@Path("busId")String busId,@Path("date")String date);
+
+    @GET("seat/history/{userId}")
+    Call<ArrayList<Reservation>> getAllHistory(@Path("userId")Long userId);
+
 }

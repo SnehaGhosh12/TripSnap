@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +68,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     private int STATUS_AVAILABLE = 1;
     private int STATUS_BOOKED = 2;
     private int STATUS_RESERVED = 3;
+    private  Dialog dialog;
 
 
     @Override
@@ -76,6 +79,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         map=new HashMap<>();
         mapInitializer();
         i=getIntent().getExtras();
+
         getAllSeatsByBusId(i.getString("bus_id"));
 
 
@@ -314,17 +318,23 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(Call<Reservation> call, Throwable t) {
 //                Toast.makeText(SeatsActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toasty.success(SeatsActivity.this,"Successfully Booked",Toasty.LENGTH_SHORT).show();
             }
 
         });
-        Toasty.success(SeatsActivity.this,"Successfully Booked",Toasty.LENGTH_SHORT).show();
+//        Toasty.success(SeatsActivity.this,"Successfully Booked",Toasty.LENGTH_SHORT).show();
 
 
     }
 
     private  void getAllSeatsByBusId(String busId){
         RetrofitAPI retrofitAPI = BaseUrl.retrofit();
-        Call<ArrayList<Reservation>> call = retrofitAPI.findAllSeatByBusId(busId);
+        dialog = new Dialog(SeatsActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.progressbar);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        Call<ArrayList<Reservation>> call = retrofitAPI.findBusByBusIdandDate(busId,BusesListActivity.date);
 
         call.enqueue(new Callback<ArrayList<Reservation>>() {
             @Override
@@ -345,12 +355,15 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 //                    Toast.makeText(SeatsActivity.this, "" + seats, Toast.LENGTH_SHORT).show();
                 }
                 seatLayOutUi();
+                dialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<ArrayList<Reservation>> call, Throwable t) {
                 Toast.makeText(SeatsActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
+
     }
 }

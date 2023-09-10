@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tripsnap.Adapter.BusesAdapter;
@@ -17,12 +20,16 @@ public class BusesListActivity extends AppCompatActivity {
 
     public static String date;
     public  static Long userId;
+    private TextView noBusFound;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buses_list);
 
         RecyclerView recyclerView=findViewById(R.id.buslist_rv);
+        noBusFound=findViewById(R.id.NoBusFound);
+        noBusFound.setVisibility(View.GONE);
 
 //        List<ItemBus> itemBuses=new ArrayList<ItemBus>();
 //        itemBuses.add(new ItemBus("WB 29 1234","Kolkata","Delhi","2.00 pm -> 4.14 pm","8000"));
@@ -48,13 +55,18 @@ public class BusesListActivity extends AppCompatActivity {
 //        itemBuses.add(new ItemBus("WB 29 1289","Kolkata","Pune","12.40am -> 2.00am","3900"));
 
         ArrayList<Bus> arrayList=getIntent().getParcelableArrayListExtra("arraylist");
-        Bundle i=getIntent().getExtras();
-        date=getIntent().getStringExtra("date");
-        userId=getIntent().getLongExtra("UserId",-1);
+        if(arrayList.size()==0){
+            noBusFound.setVisibility(View.VISIBLE);
+        }else{
+            Bundle i=getIntent().getExtras();
+            date=getIntent().getStringExtra("date");
+            userId=getIntent().getLongExtra("UserId",-1);
 //        Toast.makeText(this, ""+userId, Toast.LENGTH_SHORT).show();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new BusesAdapter(getApplicationContext(),arrayList));
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new BusesAdapter(getApplicationContext(),arrayList));
+        }
+
     }
 
     @Override

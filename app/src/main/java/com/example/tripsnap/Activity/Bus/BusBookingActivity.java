@@ -1,6 +1,8 @@
 package com.example.tripsnap.Activity.Bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -14,9 +16,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripsnap.Adapter.BusesAdapter;
+import com.example.tripsnap.Adapter.HistoryAdapter;
 import com.example.tripsnap.Models.Bus;
+import com.example.tripsnap.Models.Reservation;
 import com.example.tripsnap.R;
 import com.example.tripsnap.RetrofitApiInterface.BaseUrl;
 import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
@@ -40,13 +46,17 @@ public class BusBookingActivity extends AppCompatActivity {
     public static Long userId;
     private Dialog dialog;
     private String stEnterSource,stEnterDestination;
-
+    private RecyclerView historyRecyclerView;
+    private TextView historyTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_booking);
         init();
+
+        historyApi();
+
 
         dateEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,10 +133,42 @@ public class BusBookingActivity extends AppCompatActivity {
         });
     }
 
+    private void historyApi() {
+        RetrofitAPI retrofitAPI=BaseUrl.retrofit();
+        dialog = new Dialog(BusBookingActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.progressbar);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        Call<ArrayList<Reservation>> historyList=retrofitAPI.getAllHistory(userId);
+        historyList.enqueue(new Callback<ArrayList<Reservation>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Reservation>> call, Response<ArrayList<Reservation>> response) {
+                ArrayList<Reservation> arrayList=response.body();
+//                Toast.makeText(BusBookingActivity.this, ""+arrayList.size(), Toast.LENGTH_SHORT).show();
+                if(arrayList.size()==0){
+                    historyTextView.setVisibility(View.GONE);
+                    dialog.dismiss();
+                }else {
+                    dialog.dismiss();
+                    historyRecyclerView.setLayoutManager(new LinearLayoutManager(BusBookingActivity.this));
+                    historyRecyclerView.setAdapter(new HistoryAdapter(getApplicationContext(), arrayList));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Reservation>> call, Throwable t) {
+                     Toasty.error(BusBookingActivity.this,t.getMessage(),Toasty.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
     public void getBusByApi(){
         RetrofitAPI retrofitAPI = BaseUrl.retrofit();
-        String busId= stEnterSource.trim()+stEnterDestination.trim();
-        Call<ArrayList<Bus>> call = retrofitAPI.getBus(busId);
+        String srcdst= stEnterSource.trim()+stEnterDestination.trim();
+        Call<ArrayList<Bus>> call = retrofitAPI.findAllBusBySrcdstAndDate(srcdst,dateEdit.getText().toString());
 
         call.enqueue(new Callback<ArrayList<Bus>>() {
             @Override
@@ -166,6 +208,8 @@ public class BusBookingActivity extends AppCompatActivity {
         search=findViewById(R.id.btnSearch);
         calender= findViewById(R.id.calender);
         dateEdit=findViewById(R.id.etDate);
+        historyTextView=findViewById(R.id.historyTextView);
+        historyRecyclerView=findViewById(R.id.historyRecyclerView);
         etEnterSource=findViewById(R.id.etEnterSource);
         etEnterDestination=findViewById(R.id.etEnterDestination);
     }
