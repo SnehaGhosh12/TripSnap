@@ -24,6 +24,7 @@ import com.example.tripsnap.RetrofitApiInterface.RetrofitAPI;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -102,11 +103,13 @@ public class BusBookingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 stringConverter();
                 if(stEnterSource.isEmpty()){
-                    Toast.makeText(BusBookingActivity.this, "Please enter source", Toast.LENGTH_SHORT).show();
+                    Toasty.error(BusBookingActivity.this,"Please enter source",Toasty.LENGTH_SHORT).show();
                 }else if( stEnterDestination.isEmpty()){
-                    Toast.makeText(BusBookingActivity.this, "Please enter destination", Toast.LENGTH_SHORT).show();
+                    Toasty.error(BusBookingActivity.this,"Please enter destination",Toasty.LENGTH_SHORT).show();
+//                    Toast.makeText(BusBookingActivity.this, "Please enter destination", Toast.LENGTH_SHORT).show();
                 }else if( dateEdit.getText().toString().isEmpty()){
-                    Toast.makeText(BusBookingActivity.this, "Please enter date", Toast.LENGTH_SHORT).show();
+                    Toasty.error(BusBookingActivity.this,"Please enter date",Toasty.LENGTH_SHORT).show();
+//                    Toast.makeText(BusBookingActivity.this, "Please enter date", Toast.LENGTH_SHORT).show();
                 }else {
                     dialog = new Dialog(BusBookingActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

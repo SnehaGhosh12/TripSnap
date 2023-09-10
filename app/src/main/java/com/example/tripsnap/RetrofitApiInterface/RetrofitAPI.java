@@ -10,6 +10,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -31,5 +32,7 @@ public interface RetrofitAPI {
     @GET("seat/check/{id}/{no}")
     Call<ArrayList<Reservation>> checkBookedOrNot(@Path("id")String id,@Path("no")int no);
 
+    @GET("seat/bus/{busId}")
+    Call<ArrayList<Reservation>> findAllSeatByBusId(@Path("busId")String busId);
 
 }
