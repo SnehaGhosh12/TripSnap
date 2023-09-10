@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -33,7 +35,8 @@ public class BusBookingActivity extends AppCompatActivity {
     final Calendar c = Calendar.getInstance();
     private EditText dateEdit,etEnterSource,etEnterDestination;
     private long pressedTime;
-    public static  Long lnUserId;
+//    public static  Long lnUserId;
+    public static Long userId;
     private Dialog dialog;
     private String stEnterSource,stEnterDestination;
 
@@ -43,7 +46,6 @@ public class BusBookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_booking);
         init();
-
 
         dateEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +102,7 @@ public class BusBookingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 stringConverter();
                 if(stEnterSource.isEmpty()){
-                    Toast.makeText(BusBookingActivity.this, "Please enter source"+lnUserId.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BusBookingActivity.this, "Please enter source", Toast.LENGTH_SHORT).show();
                 }else if( stEnterDestination.isEmpty()){
                     Toast.makeText(BusBookingActivity.this, "Please enter destination", Toast.LENGTH_SHORT).show();
                 }else if( dateEdit.getText().toString().isEmpty()){
@@ -131,10 +133,13 @@ public class BusBookingActivity extends AppCompatActivity {
 
 
                 Intent i = new Intent(BusBookingActivity.this, BusesListActivity.class);
+
                 Bundle bundle=new Bundle();
                 bundle.putParcelableArrayList("arraylist",list);
                 i.putExtras(bundle);
                 i.putExtra("date",dateEdit.getText().toString());
+                i.putExtra("UserId",userId);
+
                 dialog.dismiss();
                 startActivity(i);
             }
@@ -142,6 +147,7 @@ public class BusBookingActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<Bus>> call, Throwable t) {
                 Toast.makeText(BusBookingActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
 
 
@@ -150,7 +156,10 @@ public class BusBookingActivity extends AppCompatActivity {
 
     }
     private void init(){
-        lnUserId=getIntent().getLongExtra("User Id",0);
+//        lnUserId=getIntent().getLongExtra("User Id",0);
+        SharedPreferences sharedPreferences=getSharedPreferences("login", Context.MODE_PRIVATE);
+        userId=sharedPreferences.getLong("UserId",-1);
+//        Toast.makeText(BusBookingActivity.this, ""+userId, Toast.LENGTH_SHORT).show();
         search=findViewById(R.id.btnSearch);
         calender= findViewById(R.id.calender);
         dateEdit=findViewById(R.id.etDate);

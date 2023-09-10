@@ -1,6 +1,6 @@
 package com.example.tripsnap.Activity.Bus;
 
-import static com.example.tripsnap.Activity.Bus.BusBookingActivity.lnUserId;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +60,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             + "AA_AAA/"
             + "___AAA/"
             + "AA_AAA/"
-            + "AA_AAR/"
+            + "AA_AAA/"
             + "AA_AAA/"
             + "AA_RAA/"
             + "AAAAAA/");
@@ -71,7 +71,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     List<TextView> seatViewList = new ArrayList<>();
 
     int seatSize = 140;
-    int seatGaping = 5;
+    int seatGaping=5;
+    private int left,top,right,bottom;
+    int width;
 
     int STATUS_AVAILABLE = 1;
     int STATUS_BOOKED = 2;
@@ -84,13 +86,18 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seats);
-
+        width= this.getResources().getDisplayMetrics().widthPixels;
+        top=width/27;
+        bottom=width/27;
+        left=width/22;
+        right=width/24;
+//        Toast.makeText(this, ""+width, Toast.LENGTH_SHORT).show();
 
         layout = findViewById(R.id.layoutSeat);
         color_guide = findViewById(R.id.color_guide);
         color_guide.setVisibility(View.GONE);
         user_id = findViewById(R.id.user_id);
-        user_id.setText(BusBookingActivity.lnUserId.toString());
+        user_id.setText(BusBookingActivity.userId.toString());
 
 
         seats = new StringBuilder("/" + seats);
@@ -99,10 +106,12 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutSeat.setOrientation(LinearLayout.VERTICAL);
         layoutSeat.setLayoutParams(params);
-        layoutSeat.setPadding(8 * seatGaping, 8 * seatGaping, 8 * seatGaping, 8 * seatGaping);
+
+        layoutSeat.setPadding(left,top,right,bottom);
         layout.addView(layoutSeat);
 
         LinearLayout layout = null;
+
 
         int count = 0;
 
@@ -112,13 +121,13 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 layout.setOrientation(LinearLayout.HORIZONTAL);
                 layoutSeat.addView(layout);
             } else if (seats.charAt(index) == 'U') {
-                count++;
+//                count++;
                 TextView view = new TextView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(seatSize, seatSize);
-                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
+//                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
                 view.setLayoutParams(layoutParams);
-                view.setPadding(0, 0, 0, 2 * seatGaping);
-                view.setId(count);
+//                view.setPadding(0, 0, 0, 2 * seatGaping);
+                view.setId(index);
                 view.setGravity(Gravity.CENTER);
                 view.setBackgroundResource(R.drawable.ic_seats_booked);
                 view.setTextColor(Color.WHITE);
@@ -132,9 +141,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 count++;
                 TextView view = new TextView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(seatSize, seatSize);
-                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
+//                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
                 view.setLayoutParams(layoutParams);
-                view.setPadding(0, 0, 0, 2 * seatGaping);
+//                view.setPadding(0, 0, 0, 2 * seatGaping);
                 view.setId(count);
                 view.setGravity(Gravity.CENTER);
                 view.setBackgroundResource(R.drawable.ic_seats_selected);
@@ -150,9 +159,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 count++;
                 TextView view = new TextView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(seatSize, seatSize);
-                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
+//                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
                 view.setLayoutParams(layoutParams);
-                view.setPadding(0, 0, 0, 2 * seatGaping);
+//                view.setPadding(0, 0, 0, 2 * seatGaping);
                 view.setId(count);
                 view.setGravity(Gravity.CENTER);
                 view.setBackgroundResource(R.drawable.ic_seats_reserved);
@@ -166,7 +175,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             } else if (seats.charAt(index) == '_') {
                 TextView view = new TextView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(seatSize, seatSize);
-                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
+//                layoutParams.setMargins(seatGaping, seatGaping, seatGaping, seatGaping);
                 view.setLayoutParams(layoutParams);
                 view.setBackgroundColor(Color.TRANSPARENT);
                 view.setText("");
@@ -216,8 +225,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                         Bundle i=getIntent().getExtras();
 
                         reservation.setStatus("Booked");
-                        Long userId=lnUserId;
-                        reservation.setUserId(userId);
+
+                        reservation.setUserId(BusesListActivity.userId);
                         reservation.setBusId(i.getString("bus_id"));
                         reservation.setJourneyDate(BusesListActivity.date);
                         reservation.setFare(Integer.parseInt(i.getString("fare")));

@@ -25,6 +25,8 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences= getSharedPreferences("login", Context.MODE_PRIVATE);
                 if (sharedPreferences.contains("isUserLogIn")) {
                     Intent intent = new Intent(SplashActivity.this, BusBookingActivity.class);
+                    Long userId= sharedPreferences.getLong("UserId",-1);
+                    intent.putExtra("UserId",userId);
                     startActivity(intent);
                     finish();
                 } else {

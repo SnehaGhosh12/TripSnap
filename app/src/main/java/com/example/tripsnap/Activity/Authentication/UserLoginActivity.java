@@ -35,13 +35,15 @@ public class UserLoginActivity extends AppCompatActivity {
     TextView btnSignupAct;
     Button submit;
     private long pressedTime;
+    public SharedPreferences preferences;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-        SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        editor = preferences.edit();
         editor.putBoolean("isUserLogIn", true);
         editor.commit();
         init();
@@ -108,7 +110,9 @@ public class UserLoginActivity extends AppCompatActivity {
                    if (originalPassword != null) {
                        if (originalPassword.equals(stUserPassword)) {
                            Intent i = new Intent(UserLoginActivity.this, BusBookingActivity.class);
-                           i.putExtra("User Id",lnUserId);
+//                           i.putExtra("User Id",lnUserId);
+                           editor.putLong("UserId",lnUserId);
+                           editor.apply();
                            dialog.dismiss();
                            startActivity(i);
                            finish();

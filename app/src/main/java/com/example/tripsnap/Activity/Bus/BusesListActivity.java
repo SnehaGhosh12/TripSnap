@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.tripsnap.Adapter.BusesAdapter;
 import com.example.tripsnap.Models.Bus;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class BusesListActivity extends AppCompatActivity {
 
     public static String date;
+    public  static Long userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class BusesListActivity extends AppCompatActivity {
         ArrayList<Bus> arrayList=getIntent().getParcelableArrayListExtra("arraylist");
         Bundle i=getIntent().getExtras();
         date=getIntent().getStringExtra("date");
+        userId=getIntent().getLongExtra("UserId",-1);
+//        Toast.makeText(this, ""+userId, Toast.LENGTH_SHORT).show();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new BusesAdapter(getApplicationContext(),arrayList));
