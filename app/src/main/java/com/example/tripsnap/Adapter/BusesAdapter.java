@@ -40,10 +40,10 @@ public class BusesAdapter extends RecyclerView.Adapter<BusHolder> {
 
         Bus item = itembuses.get(position);
         holder.bus_id.setText(item.getBusId());
-        holder.source.setText(item.getSource());
-        holder.destination.setText(item.getDestination());
-        holder.arvtime.setText(item.getArrivalTime());
-        holder.depttime.setText(item.getDepartTime());
+        holder.source.setText(item.getSource().substring(0,1).toUpperCase()+item.getSource().substring(1).toLowerCase());
+        holder.destination.setText(item.getDestination().substring(0,1).toUpperCase()+item.getDestination().substring(1).toLowerCase());
+        holder.arvtime.setText(" "+item.getArrivalTime());
+        holder.depttime.setText(item.getDepartTime()+" ");
         holder.fare.setText("₹"+item.getFare()+"/-");
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

@@ -158,7 +158,9 @@ public class BusBookingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<Reservation>> call, Throwable t) {
+                     dialog.dismiss();
                      Toasty.error(BusBookingActivity.this,t.getMessage(),Toasty.LENGTH_SHORT).show();
+
             }
         });
 
@@ -182,6 +184,8 @@ public class BusBookingActivity extends AppCompatActivity {
                 Bundle bundle=new Bundle();
                 bundle.putParcelableArrayList("arraylist",list);
                 i.putExtras(bundle);
+                i.putExtra("src",stEnterSource);
+                i.putExtra("dst",stEnterDestination);
                 i.putExtra("date",dateEdit.getText().toString());
                 i.putExtra("UserId",userId);
 
