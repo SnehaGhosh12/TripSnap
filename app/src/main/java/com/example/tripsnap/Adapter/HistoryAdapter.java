@@ -42,7 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Reservation reservation=historyList.get(position);
 //        Toast.makeText(context, ""+reservation.getFare(), Toast.LENGTH_SHORT).show();
         holder.busIdTv.setText(""+reservation.getBusId());
-        Toast.makeText(context, ""+reservation.getTime(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, ""+reservation.getTime(), Toast.LENGTH_SHORT).show();
         holder.busSrcDstTextView.setText("₹"+reservation.getFare());
     }
 
