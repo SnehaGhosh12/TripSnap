@@ -16,6 +16,7 @@ import com.example.tripsnap.R;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
@@ -24,6 +25,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     public HistoryAdapter(Context context, ArrayList<Reservation> historyList) {
         this.context = context;
+        Collections.reverse(historyList);
         this.historyList = historyList;
     }
 
@@ -40,13 +42,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Reservation reservation=historyList.get(position);
 //        Toast.makeText(context, ""+reservation.getFare(), Toast.LENGTH_SHORT).show();
         holder.busIdTv.setText(""+reservation.getBusId());
-
-        holder.busSrcDstTextView.setText(""+reservation.getFare());
+        Toast.makeText(context, ""+reservation.getTime(), Toast.LENGTH_SHORT).show();
+        holder.busSrcDstTextView.setText("₹"+reservation.getFare());
     }
 
     @Override
     public int getItemCount() {
-//        Toast.makeText(context, ""+historyList.size(), Toast.LENGTH_SHORT).show();
+
         return historyList.size()>6?6: historyList.size();
     }
 

@@ -318,8 +318,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<Reservation> call, Throwable t) {
-//                Toast.makeText(SeatsActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toasty.success(SeatsActivity.this,"Successfully Booked",Toasty.LENGTH_SHORT).show();
+              Toasty.error(SeatsActivity.this,""+t.getMessage(),Toasty.LENGTH_SHORT).show();
             }
 
         });
