@@ -273,9 +273,10 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 } else if ((int) view.getTag() == STATUS_BOOKED) {
-                    Toast.makeText(SeatsActivity.this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SeatsActivity.this, "Seat " + view.getId() + "already is Booked", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(SeatsActivity.this,"Seat " + view.getId() + "already is Booked",Toasty.LENGTH_SHORT).show();
                 } else if ((int) view.getTag() == STATUS_RESERVED) {
-                    Toast.makeText(SeatsActivity.this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(SeatsActivity.this,"Seat " + view.getId() + "already is Reserverd",Toasty.LENGTH_SHORT).show();
                 }
             }
 
