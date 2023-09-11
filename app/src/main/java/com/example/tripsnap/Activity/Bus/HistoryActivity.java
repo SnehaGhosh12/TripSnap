@@ -3,6 +3,7 @@ package com.example.tripsnap.Activity.Bus;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,7 +12,7 @@ import com.example.tripsnap.R;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    TextView bus_id,fare,dest,src,time,date,seat_no;
+    TextView bus_id,fare,dest,src,time,date,seat_no,btn_bck;
     ImageView imageView;
     int height;
     @Override
@@ -21,7 +22,7 @@ public class HistoryActivity extends AppCompatActivity {
         init();
         height=getApplicationContext().getResources().getDisplayMetrics().heightPixels;
 //        Toast.makeText(this, ""+height, Toast.LENGTH_SHORT).show();
-        imageView.setMaxHeight(height/9);
+//        imageView.setMaxHeight(height/9);
         bus_id.setText(getIntent().getStringExtra("bus_id"));
         fare.setText("₹"+getIntent().getStringExtra("fare")+"/-");
         src.setText(getIntent().getStringExtra("source").substring(0,1).toUpperCase()+getIntent().getStringExtra("source").substring(1).toLowerCase());
@@ -29,6 +30,13 @@ public class HistoryActivity extends AppCompatActivity {
         time.setText(getIntent().getStringExtra("time"));
         date.setText(getIntent().getStringExtra("journey_date"));
         seat_no.setText(getIntent().getStringExtra("seat_no"));
+
+        btn_bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
 
@@ -40,6 +48,8 @@ public class HistoryActivity extends AppCompatActivity {
         date=findViewById(R.id.date);
         time=findViewById(R.id.time);
         seat_no=findViewById(R.id.seat_no);
-        imageView=findViewById(R.id.image);
+        btn_bck=findViewById(R.id.back_btn);
+
+//        imageView=findViewById(R.id.image);
     }
 }

@@ -70,6 +70,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     private int STATUS_RESERVED = 3;
     private  Dialog dialog;
 
+    TextView bck_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,6 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         i=getIntent().getExtras();
 
         getAllSeatsByBusId(i.getString("bus_id"));
-
 
 
     }
@@ -100,6 +101,14 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 //        color_guide.setVisibility(View.GONE);
         user_id = findViewById(R.id.user_id);
         user_id.setText(BusBookingActivity.userId.toString());
+
+        bck_btn=findViewById(R.id.back_btn);
+        bck_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
 
 
