@@ -15,8 +15,11 @@
         android:theme="@style/Theme.TripSnap"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.Bus.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Bus.SeatsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Activity.Splash.SplashActivity"
             android:exported="true">
@@ -37,9 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Authentication.UserLoginActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".Activity.Authentication.RegisterActivity"
             android:exported="false" />
