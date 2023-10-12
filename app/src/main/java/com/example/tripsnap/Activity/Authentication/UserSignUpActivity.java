@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tripsnap.Models.User;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 
 public class UserSignUpActivity extends AppCompatActivity {
 
-
+    private TextView btnSignIn;
     private EditText etMobileNo;
     private EditText etName;
     private   EditText etEmail;
@@ -60,6 +61,15 @@ public class UserSignUpActivity extends AppCompatActivity {
                     registrationUser(user);
                 }
 
+            }
+        });
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(UserSignUpActivity.this, UserLoginActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -122,6 +132,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         etPassword=findViewById(R.id.etPassword);
 
         btnSignUp=findViewById(R.id.btnSignUp);
+        btnSignIn=findViewById(R.id.sign_in);
 
     }
     @Override

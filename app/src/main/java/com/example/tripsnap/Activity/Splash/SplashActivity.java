@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.tripsnap.Activity.Authentication.UserLoginActivity;
 import com.example.tripsnap.Activity.Bus.BusBookingActivity;
@@ -23,7 +24,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences sharedPreferences= getSharedPreferences("login", Context.MODE_PRIVATE);
-                if (sharedPreferences.contains("isUserLogIn")) {
+                if (sharedPreferences.contains("isUserLogIn") && sharedPreferences.getLong("UserId",-1)!=-1) {
+//                    Log.d("user",""+sharedPreferences.getLong("UserId",-1));
                     Intent intent = new Intent(SplashActivity.this, BusBookingActivity.class);
                     Long userId= sharedPreferences.getLong("UserId",-1);
                     intent.putExtra("UserId",userId);
